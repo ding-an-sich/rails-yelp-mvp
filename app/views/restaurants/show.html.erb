@@ -1,0 +1,27 @@
+<h1> <%= @restaurant.name %> </h1>
+<%= "Contact number: #{@restaurant.phone_number}" if @restaurant.phone_number.present? %>
+<ul>
+  <li> <%= "#{@restaurant.category.capitalize} food" %> </li>
+  <li> <%= "Find us at #{@restaurant.address}" %> </li>
+</ul>
+<h2> <%= "#{@restaurant.name}'s reviews "%> </h2>
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li>
+    <%= "#{review.content}"%>
+    <% review.rating.times do %>
+      <%= '*' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Leave your review below:</h2>
+
+<%= simple_form_for [ @restaurant, @review ] do |form| %>
+      <%= form.input :content %>
+      <%= form.input :rating %>
+      <%= form.submit %>
+<% end %>
+<%= link_to 'Back', restaurants_path %>
+

@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Faker::Config.locale = 'en-US'
+category_array = %w[chinese italian japanese french belgian]
+count = 1
+10.times do
+  restaurant = Restaurant.new(name: Faker::Restaurant.name,
+                              address: Faker::Address.city,
+                              category: category_array.sample,
+                              phone_number: Faker::PhoneNumber.phone_number)
+  puts "Created restaurant number #{count}"
+  count += 1
+  restaurant.save!
+end
