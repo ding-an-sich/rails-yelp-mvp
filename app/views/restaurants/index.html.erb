@@ -1,11 +1,12 @@
 <h1>Restaurants</h1>
-<ul>
+<ul class="restaurants-list">
+<% flags = { chinese: '🇨🇳', french: '🇫🇷', belgian: '🇧🇪', italian: '🇮🇹', japanese: '🇯🇵'} %>
 <% @restaurants.each do |restaurant| %>
   <li>
     <%= link_to restaurant.name, restaurant_path(restaurant.id) %>
-    <%= restaurant.category %>
+    <%= flags[restaurant.category.to_sym] %>
   </li>
 <% end %>
 </ul>
-<%= link_to 'Tell us about a new restaurant', new_restaurant_path %>
+<%= link_to 'Tell us about a new restaurant', new_restaurant_path, class: "btn btn-primary" %>
 

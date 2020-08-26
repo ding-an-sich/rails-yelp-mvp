@@ -4,8 +4,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.restaurant = @restaurant
     if @review.save
-      @review = Review.new
-      render 'restaurants/show', review: @review # We should pass the review param to the restaurant controller
+      redirect_to restaurant_path(@restaurant.id) # Use redirect after a save
     else
       render 'restaurants/show'
     end
